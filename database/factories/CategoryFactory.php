@@ -17,7 +17,7 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name'=>fake()->words(asText: true)//true para las palbaras que me devuelva sea solo texto
         ];
     }
 }
