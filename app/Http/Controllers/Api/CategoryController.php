@@ -8,10 +8,31 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use OpenApi\Annotations as OA;
 use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * @OA\Get(
+     *     path="/categorieds",
+     *     tags={"Categories"},
+     *     summary="Get List",
+     *     @OA\Response(
+     *         response="200",
+     *          description="Succeful operation",
+     *     ),
+     *      @OA\Response(
+     *          response="401",
+     *           description="Unauntheticated",
+     *      ),
+     *      @OA\Response(
+     *          response="403",
+     *           description="Forbiden",
+     *      ),
+     * )
+     */
     public function index()
     {
         abort_if(!auth()->user()->tokenCan('categories-list'),403);

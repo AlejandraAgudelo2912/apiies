@@ -1,0 +1,36 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API IES",
+        "description": "API para la asministracion de IES",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/categorieds": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get List",
+                "operationId": "17987b6607ac7104869a1953657e4ac0",
+                "responses": {
+                    "200": {
+                        "description": "Succeful operation"
+                    },
+                    "401": {
+                        "description": "Unauntheticated"
+                    },
+                    "403": {
+                        "description": "Forbiden"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Categories",
+            "description": "Categories"
+        }
+    ]
+}
