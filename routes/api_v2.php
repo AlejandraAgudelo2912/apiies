@@ -11,5 +11,6 @@ Route::get('lists/categories',[CategoryController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
-    Route::get('products',[ProductController::class, 'index']);
+    Route::get('products',[ProductController::class, 'index'])
+        ->middleware('throttle:products'); //la url tiene una limitiacion de dos peticios cada minuto
 });
