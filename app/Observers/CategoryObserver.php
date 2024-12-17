@@ -20,7 +20,7 @@ class CategoryObserver
      */
     public function updated(Category $category): void
     {
-        //
+        Cache::forget('categories');
     }
 
     /**

@@ -33,4 +33,9 @@ class CategoryTest extends TestCase
         $response=$this->actingAs($user)->postJson(route('categories.store'),$category);
         $response->assertStatus(201)->assertJson(['data'=>Arr::only($category,['id','name'])]);
     }
+
+    public function test_api_category_update_succesful(Category $category)
+    {
+
+    }
 }

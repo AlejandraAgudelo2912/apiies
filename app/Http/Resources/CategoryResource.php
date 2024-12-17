@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use function PHPUnit\Framework\isNull;
 
 class CategoryResource extends JsonResource
 {
@@ -21,7 +22,11 @@ class CategoryResource extends JsonResource
                     return str($this->description)->limit(20);
                 }
                 return $this->description;
-            })
+            }),
+            'photo'=>$this->when($this->photo , function () {
+                return $this->photo;
+            }),
+            'products'=>ProductResource::collection($this->whenLoaded('products')),
         ];
     }
 }

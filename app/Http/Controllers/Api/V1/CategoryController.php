@@ -34,13 +34,13 @@ class CategoryController extends Controller
     public function index()
     {
         abort_if(!auth()->user()->tokenCan('categories-list'),403);
-        return CategoryResource::collection(Category::all());
+        return CategoryResource::collection(Category::with('products')->get());
     }
 
     public function show(Category $category)
     {
         abort_if(!auth()->user()->tokenCan('categories-show'),403);
-        return new CategoryResource($category);
+        return new CategoryResource(Category::with('products')->find($category->id));
     }
 
     public function list()
@@ -75,4 +75,6 @@ class CategoryController extends Controller
         //return response(null, Response::HTTP_NO_CONTENT); CUALQUIERA DE LA DOS SE PUEDE USAR
         return response()->noContent();
     }
+
+
 }

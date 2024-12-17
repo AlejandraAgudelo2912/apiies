@@ -13,7 +13,9 @@ Route::get('lists/categories',[CategoryController::class, 'list']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
-    Route::get('products',[ProductController::class, 'index']);
+    Route::get('categories/{category}/products',[ProductController::class, 'byCategory']);
+    Route::get('categories/{category}/products/{product}',[ProductController::class, 'byProduct']);
+    Route::apiResource('products', ProductController::class);
 });
 
 /*Route::get('lists/categories', [CategoryController::class, 'list']);
