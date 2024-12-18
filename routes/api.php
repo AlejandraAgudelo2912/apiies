@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\ProductController;
+use App\Http\Controllers\Api\V1\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('categories/{category}/products',[ProductController::class, 'byCategory']);
     Route::get('categories/{category}/products/{product}',[ProductController::class, 'byProduct']);
     Route::apiResource('products', ProductController::class);
+    Route::get('tags', [TagController::class, 'index']);
 });
 
 /*Route::get('lists/categories', [CategoryController::class, 'list']);

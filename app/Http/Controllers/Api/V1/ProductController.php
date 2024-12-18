@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->paginate(9);//para que me de los productos de la categoria asociada
+        $products = Product::with('category', 'tags')->paginate(9);//para que me de los productos de la categoria asociada
 
         return ProductResource::collection($products);
     }

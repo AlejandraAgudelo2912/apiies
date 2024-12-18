@@ -21,6 +21,7 @@ class ProductResource extends JsonResource
             'description'=>$this->description,
             'price'=>number_format($this->price/100,2),
             'category'=>CategoryResource::make($this->whenLoaded('category')),//solo carga la categoria cuando el productto este cargado
+            'tags' => TagResource::collection($this->whenLoaded('tags')),
         ];
     }
 }
