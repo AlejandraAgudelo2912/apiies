@@ -25,7 +25,7 @@ class CategoryTest extends TestCase
         ]);
     }
 
-    public function test_api_category_store_succesful()
+    public function test_api_category_store_successful()
     {
         $user = User::factory()->create();
         $category=['id'=>1,'name'=>'category 1','description'=>'category 1 description'];
@@ -34,8 +34,12 @@ class CategoryTest extends TestCase
         $response->assertStatus(201)->assertJson(['data'=>Arr::only($category,['id','name'])]);
     }
 
-    public function test_api_category_update_succesful(Category $category)
+    public function test_api_category_update_successful()
     {
+        $user=User::factory()->create();
+        $category=['id'=>1,'name'=>'category 1','description'=>'category 1 description'];
 
+        $response=$this->actingAs($user)->putJson(route('categories.update',$category),$category);
+        $response->assertStatus(200)->assertJson(['data'=>Arr::only($category,['id','name'])]);
     }
 }

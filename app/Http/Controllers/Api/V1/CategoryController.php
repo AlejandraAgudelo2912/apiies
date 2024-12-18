@@ -50,6 +50,8 @@ class CategoryController extends Controller
 
     public function store(StoreCategoryRequest $request)
     {
+        abort_if(!auth()->user()->tokenCan('categories-store'),403);
+
         $data = $request->all();
 
         if($request->hasFile('photo')){
@@ -65,12 +67,16 @@ class CategoryController extends Controller
 
     public function update(Category $category, StoreCategoryRequest $request)
     {
+        abort_if(!auth()->user()->tokenCan('categories-update'),403);
+
         $category->update($request->all());
         return new CategoryResource($category);
     }
 
     public function destroy(Category $category)
     {
+        abort_if(!auth()->user()->tokenCan('categories-destroy'),403);
+
         $category->delete();
         //return response(null, Response::HTTP_NO_CONTENT); CUALQUIERA DE LA DOS SE PUEDE USAR
         return response()->noContent();

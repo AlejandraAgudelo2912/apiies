@@ -31,6 +31,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $product->tags()->detach();
         $product->delete();
         return response()->noContent();
     }
@@ -38,6 +39,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $product = Product::create($request->all());
+        $product->tags()->sync($request->input('tags',[]));
         return new ProductResource($product);
     }
 

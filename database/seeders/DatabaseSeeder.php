@@ -23,5 +23,10 @@ class DatabaseSeeder extends Seeder
            $product->tags()->attach([rand(1,20), rand(1,20)]);
        });
 
+       /*$user=User::factory()->create();
+       $user->createToken('developer-access')->plainTextToken;
+       echo"{$token}"
+       */
+
     }
 }
