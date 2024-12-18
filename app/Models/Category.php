@@ -12,6 +12,16 @@ class Category extends Model
 
     protected $fillable = ['name', 'photo'];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($category) {
+            $category->products()->delete();
+        });
+    }
+
+
     public function products() : HasMany{
         return $this->hasMany(Product::class);
     }
